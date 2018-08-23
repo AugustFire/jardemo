@@ -19,6 +19,8 @@ import org.junit.Test;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * @author: yzx
@@ -43,7 +45,7 @@ public class JsoupDemo {
         }
 
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        ArrayList<String> targets = new ArrayList<>();
+        HashSet<String> temp = new HashSet<>();
         {
         for (String srcUrl : srcUrls) {
             //每一个大页面
@@ -57,7 +59,10 @@ public class JsoupDemo {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            HttpEntity entity = httpResponse.getEntity();
+            HttpEntity entity = null;
+            if (httpResponse != null) {
+                entity = httpResponse.getEntity();
+            }
             String html = EntityUtils.toString(entity, "utf-8");
             Document document = Jsoup.parse(html);
             Elements a = document.getElementsByAttribute("href");
@@ -68,12 +73,14 @@ public class JsoupDemo {
                 String hrefStr = element.attr("href");
                 if (hrefStr.contains("https://wh.ke.com/xiaoqu/") && hrefStr.matches(reg)) {
                     System.out.println(hrefStr);
-                    targets.add(hrefStr);
+                    temp.add(hrefStr);
                 }
             }
             httpResponse.close();
 
         }
+            List<String> targets = new ArrayList<>(temp);
+
             HSSFWorkbook hssfWorkbook = new HSSFWorkbook();
             HSSFSheet sheet = hssfWorkbook.createSheet("yzx-data");
             for (int i = 0; i < targets.size(); i++) {
@@ -88,6 +95,7 @@ public class JsoupDemo {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                assert httpResponse != null;
                 HttpEntity entity = httpResponse.getEntity();
                 String html = EntityUtils.toString(entity, "utf-8");
                 Document document = Jsoup.parse(html);
