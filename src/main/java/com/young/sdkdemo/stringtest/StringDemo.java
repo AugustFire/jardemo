@@ -1,6 +1,10 @@
 package com.young.sdkdemo.stringtest;
 
+import com.young.sdkdemo.datetime.DateDemo;
 import org.junit.Test;
+
+import java.util.Date;
+import java.util.UUID;
 
 /**
  * @author: yzx
@@ -16,5 +20,9 @@ public class StringDemo {
     public void stringMethodTest() {
         String hello = String.format("test:%s", "hello");
         System.out.println(hello);
+
+        for (int i = 0; i < 100; i++) {
+            System.out.println(UUID.randomUUID().toString().replace("-",""));
+        }
     }
 }
