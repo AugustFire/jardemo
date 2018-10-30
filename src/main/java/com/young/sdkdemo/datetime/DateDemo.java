@@ -2,10 +2,9 @@ package com.young.sdkdemo.datetime;
 
 import org.junit.Test;
 
-import java.time.DayOfWeek;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.Month;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 /**
  * @author: yzx
@@ -30,4 +29,35 @@ public class DateDemo {
 
     }
 
+    @Test
+    public void test02() {
+
+        LocalDate now = LocalDate.of(2018, 10, 10);
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyMMdd");
+        String format = now.format(fmt);
+
+        System.out.println(format+">XXXXXXXX");
+
+
+        int year = now.getYear();
+        int month = now.getMonth().getValue();
+        int dayOfMonth = now.getDayOfMonth();
+        System.out.println(year);
+        System.out.println(month);
+        System.out.println(dayOfMonth);
+
+
+        System.out.println(System.currentTimeMillis());
+
+    }
+
+    @Test
+    public void test03() {
+        System.out.println(String.valueOf(System.currentTimeMillis()));
+        long timestamp = LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli();
+        System.out.println(timestamp);
+
+        LocalDateTime localDateTime = LocalDateTime.ofEpochSecond(timestamp / 1000, 0, ZoneOffset.ofHours(8));
+        System.out.println(localDateTime);
+    }
 }

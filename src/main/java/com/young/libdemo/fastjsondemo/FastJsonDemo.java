@@ -2,6 +2,7 @@ package com.young.libdemo.fastjsondemo;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.young.libdemo.vo.Temp;
 import com.young.libdemo.vo.User;
 import org.junit.Test;
 
@@ -40,6 +41,15 @@ public class FastJsonDemo {
         User user = JSONObject.parseObject(mapJsonStr, User.class);
         System.out.println(user);
     }
+
+    @Test
+    public void test02() {
+        User user = new User();
+        user.setType("1");
+        user.setName("yzx");
+        System.out.println(JSONObject.toJSONString(user));
+    }
+
 }
 
 
