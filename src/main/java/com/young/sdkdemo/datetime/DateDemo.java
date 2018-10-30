@@ -60,4 +60,11 @@ public class DateDemo {
         LocalDateTime localDateTime = LocalDateTime.ofEpochSecond(timestamp / 1000, 0, ZoneOffset.ofHours(8));
         System.out.println(localDateTime);
     }
+
+    @Test
+    public void test04() {
+        System.out.println(LocalTime.now());
+        System.out.println(LocalDateTime.now());
+
+    }
 }
