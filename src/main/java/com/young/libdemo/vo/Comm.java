@@ -19,3 +19,11 @@ public class Comm {
         this.date = date;
     }
 }
+class A{
+    private String A = "Love";
+}
+
+class B{
+    private String B = "520";
+}
+
