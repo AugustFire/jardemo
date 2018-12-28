@@ -1,48 +1,30 @@
 package com.young.libdemo.vo;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
+
 /**
  * @author: yzx
  * @date: 2018/8/21
  * @description: pojo
  */
+@Data
+@Accessors(chain = true)
+@NoArgsConstructor
 public class User {
+    private static final String xx = "AA";
     private String name;
     private Integer age;
     private String type;
 
-
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public User(String name, Integer age, String type) {
         this.name = name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
         this.age = age;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
         this.type = type;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", type='" + type + '\'' +
-                '}';
+    public static void main(String[] args) {
+
     }
 }
