@@ -36,4 +36,9 @@ public class StringDemo {
                 .map(User::getAge)
                 .collect(Collectors.toList());
     }
+
+    @Test
+    public void testV1() {
+        System.out.println(123);
+    }
 }

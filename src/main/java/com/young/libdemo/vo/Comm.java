@@ -21,3 +21,7 @@ public class Comm {
 }
 
 
+
+class A{
+    private String A = "Love";
+}
