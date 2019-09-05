@@ -17,6 +17,7 @@ public class User {
     private String name;
     private Integer age;
     private String type;
+    private String email;
 
     public User(String name, Integer age, String type) {
         this.name = name;
