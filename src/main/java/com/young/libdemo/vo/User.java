@@ -45,4 +45,8 @@ public class User {
                 ", type='" + type + '\'' +
                 '}';
     }
+
+    public void sa() {
+        System.out.println(1);
+    }
 }
