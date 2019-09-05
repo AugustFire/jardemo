@@ -25,4 +25,9 @@ public class StringDemo {
             System.out.println(UUID.randomUUID().toString().replace("-",""));
         }
     }
+
+    @Test
+    public void testV1() {
+        System.out.println(123);
+    }
 }
