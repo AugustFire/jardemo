@@ -13,6 +13,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @NoArgsConstructor
 public class User {
+
     private static final String xx = "AA";
     private String name;
     private Integer age;
@@ -25,11 +26,6 @@ public class User {
         this.type = type;
     }
 
-    public static void main(String[] args) {
 
-    }
 
-    public void sa() {
-        System.out.println(1);
-    }
 }
