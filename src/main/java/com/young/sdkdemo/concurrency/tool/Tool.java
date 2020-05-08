@@ -2,7 +2,10 @@ package com.young.sdkdemo.concurrency.tool;
 
 
 import org.junit.Test;
+import sun.rmi.runtime.Log;
 
+import java.sql.Time;
+import java.util.Random;
 import java.util.concurrent.*;
 
 /**
@@ -61,7 +64,7 @@ public class Tool {
                 try {
                     String A = "银行流水A";
                     String x = exchanger.exchange("S");
-                    System.out.println("X______"+x);
+                    System.out.println("X______" + x);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -87,5 +90,44 @@ public class Tool {
 
     }
 
+
+    /**
+     * Semaphore 测试
+     */
+    @Test
+    public void semaphoreTest() {
+        ExecutorService exec = Executors.newCachedThreadPool();
+        Semaphore sp = new Semaphore(5);
+        for (int i = 0; i < 1; i++) {
+            final int NO = i;
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        sp.acquire();
+                        System.out.println("Access:" + NO);
+                        Thread.sleep(new Random().nextInt(3000));
+                        System.out.println("Release"+NO);
+                        sp.release();
+                        //
+                        System.out.println(NO+"-----" + sp.availablePermits());
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            };
+            exec.execute(runnable);
+
+
+        }
+
+        try {
+            TimeUnit.SECONDS.sleep(30);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 }

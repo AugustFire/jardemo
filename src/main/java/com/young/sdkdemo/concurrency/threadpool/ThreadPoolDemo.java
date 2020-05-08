@@ -2,6 +2,7 @@ package com.young.sdkdemo.concurrency.threadpool;
 
 import org.junit.Test;
 
+import java.sql.SQLOutput;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -38,5 +39,13 @@ public class ThreadPoolDemo {
         long seconds = Duration.between(now, end).getSeconds();
         System.out.println("Task++++++++"+seconds);
         service.shutdown();
+    }
+
+    @Test
+    public void poolTest() throws InterruptedException {
+//        Executors.newFixedThreadPool(1);
+
+        ScheduledExecutorService service = Executors.newScheduledThreadPool(2);
+//        service.scheduleAtFixedRate();
     }
 }
