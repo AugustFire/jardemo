@@ -1,4 +1,4 @@
-package com.young.sdkdemo.concurrency.base;
+package com.young.sdkdemo.concurrent.base;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,11 +18,11 @@ public class Interrupted {
         Thread busyThread = new Thread(new BusyRunner(), "BusyThread");
         busyThread.setDaemon(true);
 
-        sleep(5);
 
 
         sleepThread.start();
         busyThread.start();
+        sleep(5);
         sleepThread.interrupt();
         busyThread.interrupt();
 
@@ -51,7 +51,7 @@ public class Interrupted {
         @Override
         public void run() {
             while (true) {
-                System.out.println("Im busy");
+                //System.out.print("Im busy");
             }
         }
     }

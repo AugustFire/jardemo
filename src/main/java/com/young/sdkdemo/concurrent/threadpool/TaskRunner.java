@@ -1,6 +1,4 @@
-package com.young.sdkdemo.concurrency.threadpool;
-
-import sun.rmi.runtime.Log;
+package com.young.sdkdemo.concurrent.threadpool;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;

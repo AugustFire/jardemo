@@ -1,10 +1,8 @@
-package com.young.sdkdemo.concurrency.tool;
+package com.young.sdkdemo.concurrent.tool;
 
 
 import org.junit.Test;
-import sun.rmi.runtime.Log;
 
-import java.sql.Time;
 import java.util.Random;
 import java.util.concurrent.*;
 

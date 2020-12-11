@@ -1,4 +1,4 @@
-package com.young.sdkdemo.concurrency.callable;
+package com.young.sdkdemo.concurrent.callable;
 
 import org.junit.Test;
 

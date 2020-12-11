@@ -1,12 +1,10 @@
-package com.young.sdkdemo.concurrency.threadpool;
+package com.young.sdkdemo.concurrent.threadpool;
 
 import org.junit.Test;
 
-import java.sql.SQLOutput;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.*;
 
 /**

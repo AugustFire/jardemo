@@ -1,4 +1,4 @@
-package com.young.sdkdemo.concurrency.lock;
+package com.young.sdkdemo.concurrent.lock;
 
 
 import java.util.concurrent.locks.Condition;

@@ -1,4 +1,4 @@
-package com.young.sdkdemo.concurrency.aqs;
+package com.young.sdkdemo.concurrent.aqs;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;

@@ -1,4 +1,4 @@
-package com.young.sdkdemo.concurrency.base;
+package com.young.sdkdemo.concurrent.base;
 
 import java.util.concurrent.TimeUnit;
 
