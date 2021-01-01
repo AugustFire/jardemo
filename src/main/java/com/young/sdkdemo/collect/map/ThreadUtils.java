@@ -44,6 +44,7 @@ public class ThreadUtils {
      */
     public static <T, R> List<R> forkJoinTasks(List<T> list, ForkJoinPool forkJoinPool, Function<T, R> mapper) {
         try {
+            System.out.println(Thread.currentThread().getName()+"123");
             return forkJoinPool.submit(() -> list.parallelStream().peek(i-> System.out.println(Thread.currentThread().getName()+" peek"+i)).map(mapper).collect(Collectors.toList())).get();
         } catch (InterruptedException e) {
             // 标记当前线程已被打断，保持线程打断信息
@@ -53,6 +54,8 @@ public class ThreadUtils {
         } catch (ExecutionException e) {
             System.out.println("任务执行失败2:"+ e);
             throw new RuntimeException("error1");
+        } finally {
+            System.out.println(Thread.currentThread().getName()+"321");
         }
     }
 

@@ -35,7 +35,7 @@ public class MapTest {
             nums.add(i*10);
         }
         //0-10-20-30-...-90
-        List<List<Integer>> lists = ThreadUtils.forkJoinTasks(nums, 10, integer -> {
+        List<Integer> collect = ThreadUtils.forkJoinTasks(nums, 10, integer -> {
             //if (integer == 10) {
             //    throw new RuntimeException("mistake");
             //}
@@ -51,14 +51,13 @@ public class MapTest {
                 integers.add(i);
             }
             return integers;
-        });
-        List<Integer> collect = lists.parallelStream().peek(i->{
+        }).parallelStream().peek(i->{
             System.out.println(Thread.currentThread().getName()+i);
         }).flatMap(List::stream).collect(Collectors.toList());
 
-        lists.forEach(
-                System.out::println
-        );
+        //lists.forEach(
+        //        System.out::println
+        //);
         System.out.println("------->");
         collect.forEach(
                 System.out::println
@@ -69,14 +68,4 @@ public class MapTest {
         TimeUnit.SECONDS.sleep(10);
     }
 
-    @Test
-    public void test2() {
-        List<Integer> integers = countPageTotalNum(11, 2);
-        System.out.println(integers);
-    }
-    public static List<Integer> countPageTotalNum(long availableNum, Integer pageSize) {
-        double ceil = Math.ceil((double) availableNum / pageSize);
-        int res = (int) ceil;
-        return IntStream.rangeClosed(1, res).boxed().collect(Collectors.toList());
-    }
 }
