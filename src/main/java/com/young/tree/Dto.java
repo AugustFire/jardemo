@@ -16,4 +16,5 @@ public class Dto {
     private Integer id;
     private String name;
     private Integer pid;
+    private Integer level;
 }

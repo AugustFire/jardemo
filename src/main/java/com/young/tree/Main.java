@@ -1,12 +1,17 @@
 package com.young.tree;
 
-import java.util.ArrayList;
+import com.alibaba.fastjson.JSON;
+
+import java.awt.image.ImageProducer;
+import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * @author Zongxu.Yang
  * create at 2021/1/1
  */
-@SuppressWarnings("all")
+//@SuppressWarnings("all")
 public class Main {
 
 
@@ -35,8 +40,47 @@ public class Main {
         areas.add(area8);
         areas.add(area9);
         areas.add(area10);
-        //--------------
 
+        List<Dto> dtos = new ArrayList<>();
+        for (Area area : areas) {
+            Dto dto1 = new Dto(area.getPid(), area.getPName(), -1,1);
+            Dto dto2 = new Dto(area.getCid(), area.getCName(), area.getPid(),2);
+            Dto dto3 = new Dto(area.getDId(), area.getDName(), area.getCid(),3);
+            dtos.add(dto1);
+            dtos.add(dto2);
+            dtos.add(dto3);
+        }
+        dtos = dtos.stream().distinct().collect(Collectors.toList());
+
+        List<Region> regionList = dtos.stream().map(i -> {
+            Region region = new Region();
+            region.setPId(i.getPid());
+            region.setId(i.getId());
+            region.setName(i.getName());
+            region.setLevel(i.getLevel());
+            return region;
+        }).collect(Collectors.toList());
+
+        List<Region> rootList = regionList.stream().filter(i -> i.getPId().equals(-1)&&i.getLevel().equals(1)).collect(Collectors.toList());
+        //regionList.removeIf(region -> region.getPId().equals(-1));
+        System.out.println(12);
+        //regionList.removeIf(i -> i.getPId().equals(-1));
+        for (Region region : rootList) {
+            Integer id = region.getId();
+            List<Region> regionList1 = regionList.stream().filter(i -> i.getPId().equals(id)&&i.getLevel().equals(2)).collect(Collectors.toList());
+            //regionList.removeIf(i -> i.getPId().equals(id));
+            region.setRegionList(regionList1);
+
+            for (Region region1 : regionList1) {
+                Integer id1 = region1.getId();
+                List<Region> regionList2 = regionList.stream().filter(i -> i.getPId().equals(id1)&&i.getLevel().equals(3)).collect(Collectors.toList());
+                region1.setRegionList(regionList2);
+
+            }
+
+        }
+
+        System.out.println(JSON.toJSONString(rootList));
 
     }
 }
